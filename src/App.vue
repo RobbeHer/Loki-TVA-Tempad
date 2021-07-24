@@ -1,28 +1,50 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <appContainer>
+      <appContainerBgRaster>
+        <navigation/>
+        <contentContainer>
+          <!-- Most routed content -->
+        </contentContainer>
+      </appContainerBgRaster>
+      <infobar/>
+    </appContainer>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import appContainer from "@/components/app-container";
+import appContainerBgRaster from "@/components/app-container-bg-raster";
+import navigation from "@/components/navigation";
+import infobar from "@/components/infobar";
+import contentContainer from "@/components/content-container";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    appContainer,
+    appContainerBgRaster,
+    navigation,
+    infobar,
+    contentContainer
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --main-bg-color: black;
+  --main-color: rgba(255,165,40,1);
+  /* rgba to rgb converter:  https://borderleft.com/toolbox/rgba/ */
+  --main-color-darken: rgb(102,66,16);
+  --main-color-dark: rgb(51,33,8);
+}
+body {
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
 }
 </style>
