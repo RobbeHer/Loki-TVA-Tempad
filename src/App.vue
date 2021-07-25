@@ -5,6 +5,7 @@
         <navigation/>
         <contentContainer>
           <!-- Most routed content -->
+          <router-view/>
         </contentContainer>
       </appContainerBgRaster>
       <infobar/>
