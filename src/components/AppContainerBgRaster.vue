@@ -6,14 +6,14 @@
 
 <script>
 export default {
-  name: "app-container-bg-raster"
+  name: "AppContainerBgRaster"
 }
 </script>
 
 <style scoped>
 #app-container-bg-raster {
   position: absolute;
-  inset: 4px 4px 1.2em;
+  inset: 4px 4px 1.3em;
   border: solid 2px var(--main-color-darken);
   background-image:
       radial-gradient(circle at 1px 1px, black 1px, transparent 0px),

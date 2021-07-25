@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "infobar"
+  name: "Infobar"
 }
 </script>
 
@@ -14,6 +14,6 @@ export default {
 #infbar {
   position: absolute;
   inset: auto 4px 0;
-  height: 1.2em;
+  height: 1.5em;
 }
 </style>

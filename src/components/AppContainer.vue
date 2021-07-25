@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "app-container"
+  name: "AppContainer"
 }
 </script>
 
