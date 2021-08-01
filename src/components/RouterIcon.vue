@@ -1,5 +1,5 @@
 <template>
-<div class="router-icon">
+<div id="router-icon">
   <router-link :to="{path: link}">
     <svg v-if="icon === 'info-circle'"
          xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style scoped>
-.router-icon a {
+#router-icon a {
   color: var(--main-color);
   text-decoration: none;
 }

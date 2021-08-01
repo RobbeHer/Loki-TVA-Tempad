@@ -1,7 +1,6 @@
 <template>
-<div class="home">
+<ContentContainer>
   <div class="row">
-    <!-- col 1 -->
     <div class="col grid-container">
       <div class="grid-item">
         <RouterIcon :link="'/time-door'" :icon="'info-circle'" :title="'TIME DOOR'"></RouterIcon>
@@ -16,9 +15,6 @@
         <RouterIcon :link="'/directory'" :icon="'info-circle'" :title="'DIRECTORY'"></RouterIcon>
       </div>
     </div>
-
-
-    <!-- col 2 -->
     <div class="col">
       <p>ACTION LIST<span>////</span></p>
       <p>SELECT PROGRAM</p>
@@ -29,22 +25,23 @@
       <button>3. CLEAR CACHE</button>
     </div>
   </div>
-</div>
+</ContentContainer>
 </template>
 
 <script>
+import ContentContainer from "@/components/ContentContainer";
 import RouterIcon from "@/components/RouterIcon";
 
 export default {
   name: 'Home',
   components: {
+    ContentContainer,
     RouterIcon
   }
 }
 </script>
 
 <style>
-.home,
 .row {
   height: 100%;
 }

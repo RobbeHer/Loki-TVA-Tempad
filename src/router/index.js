@@ -14,9 +14,14 @@ const routes = [
     path: '/directory',
     name: 'Directory',
     // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
+    // this generates a separate chunk (directory.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Directory.vue')
+    component: () => import(/* webpackChunkName: "directory" */ '../views/Directory.vue')
+  },
+  {
+    path: '/branches',
+    name: 'Branches',
+    component: () => import('../views/Branches.vue')
   }
 ]
 

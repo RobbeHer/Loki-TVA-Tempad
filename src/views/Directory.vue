@@ -1,5 +1,5 @@
 <template>
-<div class="directory">
+<ContentContainer>
   <div class="grid-container">
     <div class="grid-item">
       <RouterIcon :link="'/timeloop'" :icon="'info-circle'" :title="'TIMELOOP'"></RouterIcon>
@@ -13,8 +13,6 @@
     <div class="grid-item">
       <RouterIcon :link="'/missions'" :icon="'info-circle'" :title="'MISSIONS'"></RouterIcon>
     </div>
-
-
     <div class="grid-item">
       <RouterIcon :link="'/battery'" :icon="'info-circle'" :title="'BATTERY'"></RouterIcon>
     </div>
@@ -28,22 +26,23 @@
       <RouterIcon :link="'/news'" :icon="'info-circle'" :title="'NEWS'"></RouterIcon>
     </div>
   </div>
-</div>
+</ContentContainer>
 </template>
 
 <script>
+import ContentContainer from "@/components/ContentContainer";
 import RouterIcon from "@/components/RouterIcon";
 
 export default {
   name: "Directory",
   components: {
+    ContentContainer,
     RouterIcon
   }
 }
 </script>
 
 <style scoped>
-.directory,
 .grid-container {
   height: 100%;
 }

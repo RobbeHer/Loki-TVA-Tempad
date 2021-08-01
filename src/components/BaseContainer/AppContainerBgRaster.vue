@@ -1,6 +1,6 @@
 <template>
 <div id="app-container-bg-raster">
-  <slot></slot>
+  <slot/>
 </div>
 </template>
 

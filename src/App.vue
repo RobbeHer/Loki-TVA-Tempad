@@ -1,32 +1,14 @@
 <template>
-  <div id="app">
-    <AppContainer>
-      <AppContainerBgRaster>
-        <Navigation/>
-        <ContentContainer>
-          <router-view/><!-- Most routed content -->
-        </ContentContainer>
-      </AppContainerBgRaster>
-      <Infobar/>
-    </AppContainer>
-  </div>
+  <Base/>
 </template>
 
 <script>
-import AppContainer from "@/components/AppContainer";
-import AppContainerBgRaster from "@/components/AppContainerBgRaster";
-import Navigation from "@/components/Navigation";
-import Infobar from "@/components/Infobar";
-import ContentContainer from "@/components/ContentContainer";
+import Base from "@/components/BaseContainer";
 
 export default {
   name: 'App',
   components: {
-    AppContainer,
-    AppContainerBgRaster,
-    Navigation,
-    Infobar,
-    ContentContainer
+    Base
   }
 }
 </script>
