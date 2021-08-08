@@ -21,7 +21,7 @@ const routes = [
   {
     path: '/branches',
     name: 'Branches',
-    component: () => import('../views/Branches.vue')
+    component: () => import(/* webpackChunkName: "branches" */ '../views/Branches.vue')
   }
 ]
 

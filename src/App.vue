@@ -24,6 +24,8 @@ export default {
   /* rgba to rgb converter:  https://borderleft.com/toolbox/rgba/ */
   --main-color-darken: rgb(102,66,16);
   --main-color-dark: rgb(51,33,8);
+  --main-color-lighten: rgb(255,178,77);
+  --main-color-light: rgb(255, 234, 210);
 }
 body {
   background-color: var(--main-bg-color) !important;
