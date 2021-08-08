@@ -1,5 +1,5 @@
 <template>
-<ContentContainer :border="1" :semiTransparentBg="1">
+<ContentContainer :border="true" :semiTransparentBg="true">
   <TextSlider text="REDLINE IMMINENT" color="#F00"/>
   <div id="graph-container">
     <div id="unit-counter">
@@ -9,7 +9,6 @@
 
 
     <div id="graph">
-      <!-- GRAPH -->
     </div>
 
 
@@ -37,12 +36,41 @@ export default {
       timeline: {
         mag: '03.55.8674.1122',
         segment: '616.432'
-      }
+      },
+      countdown: 5000,
+      totalAmountOfPixels: 67,
+      amountOfPixelsPlaced: 0
     }
   },
   computed: {
     getUnits() {
       return this.units.toFixed(2);
+    }
+  },
+  mounted() {
+    const timeOut =  this.countdown / this.totalAmountOfPixels;
+
+    let interval = window.setInterval(() => {
+      this.countdown -= timeOut;
+      this.addPixel();
+
+      if (this.countdown <= 0) {
+        clearTimeout(interval);
+      }
+    }, timeOut );
+  },
+  methods: {
+    addPixel() {
+      let div = document.createElement('div');
+      div.style.position = 'absolute';
+      div.style.bottom = '0';
+      div.style.left = '50%';
+      div.style.width = '1.5%';
+      div.style.height = '3%';
+      div.style.transform = `translate(${35 * this.amountOfPixelsPlaced}%, ${-50 * this.amountOfPixelsPlaced}%)`;
+      div.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--main-color-lighten');
+      document.getElementById('graph').appendChild(div);
+      this.amountOfPixelsPlaced ++;
     }
   }
 }
@@ -62,6 +90,7 @@ export default {
   position: absolute;
   inset: 2em 0 calc(2em + 5px);
   border: 1px dotted white;
+  overflow: hidden;
 }
 #timeline-info {
   position: absolute;
