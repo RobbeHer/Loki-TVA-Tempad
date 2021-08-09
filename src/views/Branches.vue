@@ -9,6 +9,20 @@
 
 
     <div id="graph">
+      <div id="redline"/>
+      <ul id="graph-y-bar">
+        <li></li>
+        <li>01</li>
+        <li>02</li>
+        <li>03</li>
+        <li>04</li>
+      </ul>
+      <div id="time-line"/>
+    </div>
+    <div id="graph-x-bar">
+      <span>80&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;40</span>
+      <span>20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20</span>
+      <span>40&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80</span>
     </div>
 
 
@@ -32,45 +46,70 @@ export default {
   },
   data() {
     return {
-      units: 0,
+      interval: null,
+      graphStyle: 'parabolic',
       timeline: {
         mag: '03.55.8674.1122',
         segment: '616.432'
       },
-      countdown: 5000,
-      totalAmountOfPixels: 67,
-      amountOfPixelsPlaced: 0
+      countdown: 60000,
+      totalAmountOfPixels: 68,
+      amountOfPixelsPlaced: 0,
+      maxGraphHeight: 0
     }
   },
-  computed: {
-    getUnits() {
-      return this.units.toFixed(2);
-    }
+  created() {
+    this.maxGraphHeight = this.calculateGraphHeight(this.graphStyle, this.totalAmountOfPixels);
   },
   mounted() {
     const timeOut =  this.countdown / this.totalAmountOfPixels;
 
-    let interval = window.setInterval(() => {
+    this.interval = window.setInterval(() => {
       this.countdown -= timeOut;
       this.addPixel();
 
+      if(this.calculateUnitsLeft() <= 3) {
+        document.getElementById("redline").classList.add('blinking-animation');
+      }
+
       if (this.countdown <= 0) {
-        clearTimeout(interval);
+        clearTimeout(this.interval);
       }
     }, timeOut );
+  },
+  beforeDestroy() {
+    clearInterval(this.interval);
+  },
+  computed: {
+    getUnits() {
+      const unitsLeft = this.calculateUnitsLeft();
+      return (unitsLeft > 0 ? unitsLeft : 0).toFixed(2);
+    },
   },
   methods: {
     addPixel() {
       let div = document.createElement('div');
       div.style.position = 'absolute';
-      div.style.bottom = '0';
-      div.style.left = '50%';
+      div.style.bottom = this.graphStyle === 'linear' ? '-0%' : '-1.5%';
+      div.style.left = '49.25%';
       div.style.width = '1.5%';
       div.style.height = '3%';
-      div.style.transform = `translate(${35 * this.amountOfPixelsPlaced}%, ${-50 * this.amountOfPixelsPlaced}%)`;
+      div.style.transform = `translate(${35 * this.amountOfPixelsPlaced}%, ${-50 * this.calculateGraphHeight(this.graphStyle)}%)`;
       div.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--main-color-lighten');
       document.getElementById('graph').appendChild(div);
       this.amountOfPixelsPlaced ++;
+    },
+    calculateGraphHeight(type = 'linear', value = 0) {
+      let a = 0.015, x = value === 0 ? this.amountOfPixelsPlaced : value;
+      switch (type) {
+        case 'parabolic':
+          return a*(x**2);
+        default:
+          return x;
+      }
+    },
+    calculateUnitsLeft() {
+      return (5-(this.calculateGraphHeight(this.graphStyle)/this.maxGraphHeight)*5)
     }
   }
 }
@@ -80,7 +119,7 @@ export default {
 #unit-counter {
   position: absolute;
   left: 5px;
-  top: 2em;
+  top: 4em;
   line-height: 1.5em;
 }
 #units {
@@ -88,9 +127,49 @@ export default {
 }
 #graph {
   position: absolute;
-  inset: 2em 0 calc(2em + 5px);
-  border: 1px dotted white;
+  inset: 2em 0 calc(4em + 5px);
   overflow: hidden;
+}
+#redline {
+  position: absolute;
+  width: 100%;
+  height: 0.8em;
+  background-color: red;
+  z-index: 1;
+}
+.blinking-animation {
+  animation: blinking 1s linear infinite;
+}
+@keyframes blinking {
+  0% { opacity: 0 }
+  49% { opacity: 0 }
+  50% { opacity: 1 }
+  100% { opacity: 1 }
+}
+#graph-y-bar {
+  position: absolute;
+  right: 5px;
+  height: 100%;
+  line-height: 0;
+}
+#graph-y-bar li {
+  list-style: none;
+  height: 20%;
+}
+#time-line {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ccc;
+  z-index: 1;
+}
+#graph-x-bar {
+  position: absolute;
+  inset: auto 5px calc(2em + 5px);
+  line-height: 2em;
+  display: flex;
+  justify-content: space-between;
 }
 #timeline-info {
   position: absolute;
