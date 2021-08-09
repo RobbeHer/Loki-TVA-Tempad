@@ -29,6 +29,7 @@
     <div id="timeline-info">
       <p>TIMELINE MAG: {{ timeline.mag }}</p>
       <p>TIMELINE SEGMENT: {{ timeline.segment }}</p>
+      <p id="timeline-side-info">906.20++</p>
     </div>
   </div>
 </ContentContainer>
@@ -160,7 +161,7 @@ export default {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 2px;
+  height: 1.5%;
   background-color: #ccc;
   z-index: 1;
 }
@@ -174,8 +175,14 @@ export default {
 #timeline-info {
   position: absolute;
   left: 5px;
+  right: 5px;
   bottom: 5px;
   line-height: 1em;
   color: var(--main-color-light);
+}
+#timeline-side-info {
+  position: absolute;
+  right: 20vh;
+  bottom: 0;
 }
 </style>
