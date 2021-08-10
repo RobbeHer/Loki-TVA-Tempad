@@ -22,6 +22,11 @@ const routes = [
     path: '/branches',
     name: 'Branches',
     component: () => import(/* webpackChunkName: "branches" */ '../views/Branches.vue')
+  },
+  {
+    path: '/timeloop',
+    name: 'Timeloop',
+    component: () => import(/* webpackChunkName: "timeloop" */ '../views/Timeloop.vue')
   }
 ]
 
