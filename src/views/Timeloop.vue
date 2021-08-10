@@ -59,6 +59,10 @@ class Branch {
         return x;
     }
   }
+
+  getBranchProgress() {
+    return this.amountOfPixelsPlaced/this.totalAmountOfPixels;
+  }
 }
 
 export default {
@@ -73,32 +77,42 @@ export default {
       timeElapsed: 0,
       totalAmountOfGraphs: 50,
       amountOfGraphsMade: 0,
-      branches: []
+      branches: [],
+      firstBranch: null
     }
   },
   mounted() {
     this.interval = window.setInterval(() => {
       if ( this.amountOfGraphsMade < this.totalAmountOfGraphs && this.timeElapsed%1000 === 0) {
-        if (Math.floor(Math.random() * 5) === 4) {
+        if (Math.floor(Math.random() * 4) === 3) {
           this.branches.push(new Branch());
           this.amountOfGraphsMade ++
+          if (this.amountOfGraphsMade === 1) this.firstBranch = this.branches[0];
         }
       }
+      if (this.firstBranch.getBranchProgress() >= 0.35) this.setBlinkingAnimation('blinking-animation-1');
+      if (this.firstBranch.getBranchProgress() >= 0.7) this.setBlinkingAnimation('blinking-animation-2');
       this.branches.forEach((branch, index) => {
         const pop = branch.update();
         if (pop) {
           this.branches.splice(index, 1);
         }
-      })
+      });
       if (this.amountOfGraphsMade === this.totalAmountOfGraphs && this.branches.length === 0) {
         clearTimeout(this.interval);
-        console.log('cleared interval')
+        console.log('cleared interval');
       }
       this.timeElapsed += this.timeOut;
     }, this.timeOut );
   },
   beforeDestroy() {
     clearInterval(this.interval);
+  },
+  methods: {
+    setBlinkingAnimation(elClass) {
+      document.getElementById('top-redline').classList = [elClass];
+      document.getElementById('bottom-redline').classList = [elClass];
+    }
   }
 }
 </script>
@@ -118,13 +132,16 @@ export default {
   z-index: 1;
 }
 #top-redline {
-  top: 1.5em;
+  top: 20%;
 }
 #bottom-redline {
-  bottom: 1.5em;
+  bottom: 20%;
 }
-.blinking-animation {
+.blinking-animation-1 {
   animation: blinking 1s linear infinite;
+}
+.blinking-animation-2 {
+  animation: blinking 0.4s linear infinite;
 }
 @keyframes blinking {
   0% { opacity: 0 }
