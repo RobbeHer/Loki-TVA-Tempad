@@ -1,5 +1,13 @@
 <template>
 <ContentContainer :border="true" :semiTransparentBg="true">
+  <div id="bars">
+    <div id="infobar">
+      <TextSlider :text="locationText" color="var(--main-color)"/>
+    </div>
+    <div id="redline-bar">
+      <TextSlider :text="redlineText" color="#F00"/>
+    </div>
+  </div>
   <div id="graph">
     <div id="top-redline"/>
     <div id="time-line"/>
@@ -10,6 +18,7 @@
 
 <script>
 import ContentContainer from "@/components/ContentContainer";
+import TextSlider from "@/components/TextSlider";
 
 class Branch {
   completed = false;
@@ -69,6 +78,7 @@ export default {
   name: "Branches",
   components: {
     ContentContainer,
+    TextSlider
   },
   data() {
     return {
@@ -78,7 +88,9 @@ export default {
       totalAmountOfGraphs: 50,
       amountOfGraphsMade: 0,
       branches: [],
-      firstBranch: null
+      firstBranch: null,
+      locationText: "Location",
+      redlineText: "Redline",
     }
   },
   mounted() {
@@ -90,8 +102,8 @@ export default {
           if (this.amountOfGraphsMade === 1) this.firstBranch = this.branches[0];
         }
       }
-      if (this.firstBranch.getBranchProgress() >= 0.35) this.setBlinkingAnimation('blinking-animation-1');
-      if (this.firstBranch.getBranchProgress() >= 0.7) this.setBlinkingAnimation('blinking-animation-2');
+      if (this.firstBranch !== null && this.firstBranch.getBranchProgress() >= 0.35) this.setBlinkingAnimation('blinking-animation-1', 0.35);
+      if (this.firstBranch !== null && this.firstBranch.getBranchProgress() >= 0.7) this.setBlinkingAnimation('blinking-animation-2', 0.7);
       this.branches.forEach((branch, index) => {
         const pop = branch.update();
         if (pop) {
@@ -109,19 +121,67 @@ export default {
     clearInterval(this.interval);
   },
   methods: {
-    setBlinkingAnimation(elClass) {
+    setBlinkingAnimation(elClass, progress) {
       document.getElementById('top-redline').classList = [elClass];
       document.getElementById('bottom-redline').classList = [elClass];
+      if (progress === 0.35) {
+        document.getElementById('redline-bar').classList = ['redline-bar-shown'];
+        document.getElementById('infobar').classList = ['infobar-hidden'];
+      }
+      if (progress === 0.7) {
+        document.getElementById('graph').classList = ['graph-fullscreen'];
+        document.getElementById('redline-bar').classList = ['redline-bar-hidden'];
+        }
     }
   }
 }
 </script>
 
 <style scoped>
+#infobar, #redline-bar, #bars {
+  position: absolute;
+  top: 0;
+  height: 2em;
+  width: 100%;
+}
+#bars {
+  overflow: hidden;
+}
+#redline-bar {
+   top: 2em;
+}
 #graph {
   position: absolute;
-  inset: 0;
+  inset: 2em 0 1em;
   overflow: hidden;
+}
+.graph-fullscreen {
+  animation: fullscreen 0.3s linear forwards;
+}
+.infobar-hidden {
+   animation: infobar-hidden 0.3s linear forwards;      /* When the spec is finished */
+ }
+.redline-bar-shown {
+  animation: redline-bar-shown 0.3s linear forwards;      /* When the spec is finished */
+}
+.redline-bar-hidden {
+  animation: redline-bar-hidden 0.3s linear forwards;      /* When the spec is finished */
+}
+@keyframes fullscreen {
+  0% { inset: 2em 0 1em }
+  100% { inset: 0 }
+}
+@keyframes infobar-hidden {
+  0% { top: 0 }
+  100% { top: -2em }
+}
+@keyframes redline-bar-hidden {
+  0% { top: 0 }
+  100% { top: -2em }
+}
+@keyframes redline-bar-shown {
+  0% { top: 2em }
+  100% { top: 0 }
 }
 #bottom-redline,
 #top-redline {
