@@ -1,17 +1,41 @@
 <template>
 <ContentContainer :border="true" :semiTransparentBg="true">
-  <div id="bars">
-    <div id="infobar">
-      <TextSlider :text="locationText" color="var(--main-color)"/>
+  <div id="infobar">
+    <div id="upper-location-bar" style="color: var(--main-color)">
+      {{ locationText.slice().reverse() }}
+      <!--<TextSlider :text="locationText.slice().reverse()" color="var(--main-color)" :repeat="2"/>-->
     </div>
-    <div id="redline-bar">
-      <TextSlider :text="redlineText" color="#F00"/>
+    <div id="bottom-bar-part">
+      <div id="location-bar">
+        <TextSlider :text="locationText" color="var(--main-color)" :repeat="1"/>
+      </div>
+      <div id="redline-bar">
+        <TextSlider :text="redlineText" color="#F00"/>
+      </div>
     </div>
   </div>
   <div id="graph">
+    <div id="prum-tml">
+      PRUM <span id="tml">TML</span> 210
+    </div>
     <div id="top-redline"/>
     <div id="time-line"/>
     <div id="bottom-redline"/>
+    <ul id="graph-y-bar">
+      <li>01</li>
+      <li>02</li>
+      <li>03</li>
+      <li>00</li>
+      <li>03</li>
+      <li>02</li>
+      <li>01</li>
+    </ul>
+    <div id="active-ips">(100) ACTIVE IPs</div>
+    <div id="stamp-01">
+      <p>STAMP_01.0</p>
+      <p>ACTIVE<span id="star">*</span>ISPLAYING</p>
+    </div>
+    <div id="tl-moving">TL MOVING</div>
   </div>
 </ContentContainer>
 </template>
@@ -83,14 +107,19 @@ export default {
   data() {
     return {
       interval: null,
-      timeOut: 500,
+      timeOut: 200,
       timeElapsed: 0,
       totalAmountOfGraphs: 50,
       amountOfGraphsMade: 0,
       branches: [],
       firstBranch: null,
-      locationText: "Location",
-      redlineText: "Redline",
+      locationText: ["OSHKOSH, MIDGARD (04.12.1985)", "VORMIR (04.23.2301)", "MIDAVELLIR [5999.26//C5.790]",
+        "NIFLHEIM [6106.350//2510.005] DARTFORD, ENGLAND", "THORTON, USA (10.25.1551)", "COOKEVILLE, USA (11.22.19999)",
+        "EGO (12.27.1382)", "TITAN (10.13.1982)", "SAKAAR, TAYO (08.13.1984)", "BARICHARA, (COL) (02.02.1808)",
+        "PORVOO, FINLAND (07.14.1708)", "ASGARD (02.16.2004)", "ROME, ITALY (10.03.1390)", "NEW YORK, USA (09.21.1947)",
+        "TOKYO, JAPAN (03.01.1984)", "HALA (01.03.0051)", "KINGSPORT, USA (08.02.1999)", "XANDAR (09.24.1001)",
+        "BEIJING, CHINA (11.23.2005)", "MADRID, SPAIN (07.18.1903)"],
+      redlineText: "REDLINE IMMINENT",
     }
   },
   mounted() {
@@ -125,62 +154,86 @@ export default {
       document.getElementById('top-redline').classList = [elClass];
       document.getElementById('bottom-redline').classList = [elClass];
       if (progress === 0.35) {
+        document.getElementById('location-bar').classList = ['location-bar-hidden'];
         document.getElementById('redline-bar').classList = ['redline-bar-shown'];
-        document.getElementById('infobar').classList = ['infobar-hidden'];
       }
       if (progress === 0.7) {
-        document.getElementById('graph').classList = ['graph-fullscreen'];
-        document.getElementById('redline-bar').classList = ['redline-bar-hidden'];
-        }
+        //document.getElementById('graph').classList = ['graph-fullscreen'];
+        document.getElementById('infobar').classList = ['infobar-hidden'];
+        document.getElementById('prum-tml').classList = ['move-left'];
+        document.getElementById('stamp-01').classList = ['move-left'];
+        document.getElementById('tl-moving').classList = ['move-left'];
+        document.getElementById('active-ips').classList = ['move-right'];
+        document.getElementById('graph-y-bar').classList = ['move-right'];
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-#infobar, #redline-bar, #bars {
+#location-bar, #redline-bar, #infobar, #bottom-bar-part {
   position: absolute;
-  top: 0;
-  height: 2em;
   width: 100%;
 }
-#bars {
+#infobar {
+  height: 3em;
+  top: 0;
   overflow: hidden;
 }
+#bottom-bar-part {
+  height: 2em;
+  top: 0.8em;
+  overflow: hidden;
+}
+#upper-location-bar {
+  position: absolute;
+  font-size: 0.5em;
+  top: 0;
+  white-space: nowrap;
+  animation: slide 180s linear infinite;
+}
+@keyframes slide {
+  100% { transform: translateX(-100%) }
+}
+#location-bar {
+  font-size: 1.2em;
+  line-height: 1.3em;
+  top: 0;
+}
 #redline-bar {
-   top: 2em;
+  font-size: 1.2em;
+  line-height: 1.3em;
+  top: 2em;
 }
 #graph {
   position: absolute;
-  inset: 2em 0 1em;
+  /*inset: 2em 0 1em;*/
+  inset: 0;
   overflow: hidden;
 }
-.graph-fullscreen {
-  animation: fullscreen 0.3s linear forwards;
-}
-.infobar-hidden {
-   animation: infobar-hidden 0.3s linear forwards;      /* When the spec is finished */
- }
-.redline-bar-shown {
-  animation: redline-bar-shown 0.3s linear forwards;      /* When the spec is finished */
-}
-.redline-bar-hidden {
-  animation: redline-bar-hidden 0.3s linear forwards;      /* When the spec is finished */
+/*.graph-fullscreen {
+  animation: fullscreen 2s linear forwards;
 }
 @keyframes fullscreen {
   0% { inset: 2em 0 1em }
   100% { inset: 0 }
+}*/
+.location-bar-hidden{
+  animation: infobar-hidden 0.75s linear forwards;
+}
+.infobar-hidden {
+  animation: infobar-hidden 2s linear forwards;
+}
+.redline-bar-shown {
+  animation: redline-bar-shown 0.75s linear forwards;
 }
 @keyframes infobar-hidden {
   0% { top: 0 }
-  100% { top: -2em }
-}
-@keyframes redline-bar-hidden {
-  0% { top: 0 }
-  100% { top: -2em }
+  100% { top: -3em }
 }
 @keyframes redline-bar-shown {
-  0% { top: 2em }
+  0% { top: 2.5em }
   100% { top: 0 }
 }
 #bottom-redline,
@@ -216,5 +269,60 @@ export default {
   height: 1.5%;
   background-color: #ccc;
   z-index: 1;
+}
+#prum-tml {
+  position: absolute;
+  top: 22%;
+  left: 5px;
+  font-size: 0.7em;
+}
+#tml {
+  background-color: var(--main-color-lighten);
+  color: var(--main-bg-color);
+  padding: 0 2px !important;
+}
+#active-ips {
+  position: absolute;
+  bottom: 14%;
+  right: 5px;
+  font-size: 0.5em;
+}
+#stamp-01 {
+  position: absolute;
+  bottom: 22%;
+  left: 5px;
+  font-size: 0.5em;
+}
+#tl-moving {
+  position: absolute;
+  bottom: 14%;
+  left: 5px;
+  font-size: 0.5em;
+}
+
+.move-left { animation: move-left 10s linear forwards }
+@keyframes move-left {
+  0% { left: 5px }
+  100% { left: -100% }
+}
+.move-right { animation: move-right 10s linear forwards }
+@keyframes move-right {
+  0% { right: 5px }
+  100% { right: -100% }
+}
+#graph-y-bar {
+  position: absolute;
+  right: 5px;
+  top: 20%;
+  bottom: 20%;
+  height: 60%;
+  line-height: 0;
+  font-size: 0.8em;
+  z-index: 2;
+}
+#graph-y-bar li {
+  list-style: none;
+  height: 14.2%;
+  transform: translateY(50%);
 }
 </style>
