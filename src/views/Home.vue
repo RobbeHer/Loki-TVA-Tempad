@@ -3,16 +3,16 @@
   <div class="row">
     <div class="col grid-container">
       <div class="grid-item">
-        <RouterIcon :link="'/time-door'" :icon="'info-circle'" :title="'TIME DOOR'"></RouterIcon>
+        <RouterIcon :link="'/time-door'" :icon="'time-door'" :title="'TIME DOOR'"></RouterIcon>
       </div>
       <div class="grid-item">
-        <RouterIcon :link="'/miss-minutes'" :icon="'info-circle'" :title="'MISS MINUTES'"></RouterIcon>
+        <RouterIcon :link="'/miss-minutes'" :icon="'mrs-minutes'" :title="'MISS MINUTES'"></RouterIcon>
       </div>
       <div class="grid-item">
-        <RouterIcon :link="'/settings'" :icon="'info-circle'" :title="'SETTINGS'"></RouterIcon>
+        <RouterIcon :link="'/settings'" :icon="'settings'" :title="'SETTINGS'"></RouterIcon>
       </div>
       <div class="grid-item">
-        <RouterIcon :link="'/directory'" :icon="'info-circle'" :title="'DIRECTORY'"></RouterIcon>
+        <RouterIcon :link="'/directory'" :icon="'directory'" :title="'DIRECTORY'"></RouterIcon>
       </div>
     </div>
     <div class="col">
@@ -41,7 +41,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .row {
   height: 100%;
 }
@@ -53,5 +53,11 @@ export default {
 
 .grid-item {
   text-align: center;
+  place-self: center center;
+}
+
+.grid-item /deep/ img {
+  width: auto;
+  height: 25vh;
 }
 </style>

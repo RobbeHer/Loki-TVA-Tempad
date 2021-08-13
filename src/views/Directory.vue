@@ -2,28 +2,28 @@
 <ContentContainer>
   <div class="grid-container">
     <div class="grid-item">
-      <RouterIcon :link="'/timeloop'" :icon="'info-circle'" :title="'TIMELOOP'"></RouterIcon>
+      <RouterIcon :link="'/timeloop'" :icon="'timeloop'" :title="'TIMELOOP'"></RouterIcon>
     </div>
     <div class="grid-item">
-      <RouterIcon :link="'/timekeepers'" :icon="'info-circle'" :title="'TIMEKEEPERS'"></RouterIcon>
+      <RouterIcon :link="'/timekeepers'" :icon="'timekeepers'" :title="'TIMEKEEPERS'"></RouterIcon>
     </div>
     <div class="grid-item">
-      <RouterIcon :link="'/personnel'" :icon="'info-circle'" :title="'PERSONNEL'"></RouterIcon>
+      <RouterIcon :link="'/personnel'" :icon="'personnel'" :title="'PERSONNEL'"></RouterIcon>
     </div>
     <div class="grid-item">
-      <RouterIcon :link="'/missions'" :icon="'info-circle'" :title="'MISSIONS'"></RouterIcon>
+      <RouterIcon :link="'/missions'" :icon="'missions'" :title="'MISSIONS'"></RouterIcon>
     </div>
     <div class="grid-item">
-      <RouterIcon :link="'/battery'" :icon="'info-circle'" :title="'BATTERY'"></RouterIcon>
+      <RouterIcon :link="'/battery'" :icon="'battery'" :title="'BATTERY'"></RouterIcon>
     </div>
     <div class="grid-item">
-      <RouterIcon :link="'/branches'" :icon="'info-circle'" :title="'BRANCHES'"></RouterIcon>
+      <RouterIcon :link="'/branches'" :icon="'branches'" :title="'BRANCHES'"></RouterIcon>
     </div>
     <div class="grid-item">
-      <RouterIcon :link="'/draw'" :icon="'info-circle'" :title="'DRAW'"></RouterIcon>
+      <RouterIcon :link="'/draw'" :icon="'draw'" :title="'DRAW'"></RouterIcon>
     </div>
     <div class="grid-item">
-      <RouterIcon :link="'/news'" :icon="'info-circle'" :title="'NEWS'"></RouterIcon>
+      <RouterIcon :link="'/news'" :icon="'news'" :title="'NEWS'"></RouterIcon>
     </div>
   </div>
 </ContentContainer>
@@ -54,5 +54,11 @@ export default {
 
 .grid-item {
   text-align: center;
+  place-self: center center;
+}
+
+.grid-item /deep/ img {
+  width: auto;
+  height: 25vh;
 }
 </style>

@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       interval: null,
-      graphStyle: 'parabolic',
+      graphStyle: 'linear',
       timeline: {
         mag: '03.55.8674.1122',
         segment: '616.432'

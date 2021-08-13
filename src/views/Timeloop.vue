@@ -107,7 +107,7 @@ export default {
   data() {
     return {
       interval: null,
-      timeOut: 200,
+      timeOut: 500,
       timeElapsed: 0,
       totalAmountOfGraphs: 50,
       amountOfGraphsMade: 0,
