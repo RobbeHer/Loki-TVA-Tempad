@@ -2,13 +2,26 @@
 <div id="infbar">
   12.04.1549&nbsp;&nbsp;&nbsp;0021.199&nbsp;//&nbsp;1122.991
   <p id="left-info">E:90.56c</p>
-  <img src="../../assets/img/tva-logo.png" alt="">
+  <img v-if="showLogo" src="../../assets/img/tva-logo.png" alt="">
 </div>
 </template>
 
 <script>
 export default {
-  name: "Infobar"
+  name: "Infobar",
+  data() {
+    return {
+      showLogo: false,
+      showOnPages: [
+        '/branches'
+      ]
+    }
+  },
+  watch: {
+    $route(to) {
+      this.showLogo = this.showOnPages.includes(to.path);
+    }
+  }
 }
 </script>
 
