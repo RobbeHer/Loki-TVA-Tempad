@@ -1,10 +1,10 @@
 <template>
 <nav id="navigation">
-  <RouterIcon :link="'/'" :icon="'check-square-fill'"></RouterIcon>
-  <RouterIcon :link="'/directory'" :icon="'check-square-fill'"></RouterIcon>
-  <RouterIcon :link="'/'" :icon="'check-square-fill'"></RouterIcon>
-  <RouterIcon :link="'/'" :icon="'check-square-fill'"></RouterIcon>
-  <RouterIcon :link="'/'" :icon="'check-square-fill'"></RouterIcon>
+  <RouterIcon :link="'/'" :icon="'nav-icon-1'"></RouterIcon>
+  <RouterIcon :link="'/directory'" :icon="'nav-icon-2'"></RouterIcon>
+  <RouterIcon :link="'/timeloop'" :icon="'nav-icon-3'"></RouterIcon>
+  <RouterIcon :link="'/branches'" :icon="'nav-icon-4'"></RouterIcon>
+  <RouterIcon :link="'/'" :icon="'nav-icon-5'"></RouterIcon>
 </nav>
 </template>
 
@@ -22,10 +22,13 @@ export default {
 <style scoped>
 #navigation {
   position: absolute;
-  bottom: 5vh;
+  bottom: 0;
 }
-/deep/ svg {
-  width: 5vh;
-  height: 5vh;
+/deep/ #router-icon {
+  margin-bottom: 4vh !important;
+}
+/deep/ #router-icon img {
+  width: 4.5vh;
+  height: auto;
 }
 </style>
