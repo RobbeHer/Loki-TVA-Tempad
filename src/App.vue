@@ -22,6 +22,7 @@ export default {
   --main-bg-color: black;
   --main-color: rgba(255,165,40,1);
   /* rgba to rgb converter:  https://borderleft.com/toolbox/rgba/ */
+  --main-color-darken-soft: rgba(255,165,40,0.7);
   --main-color-darken: rgb(102,66,16);
   --main-color-dark: rgb(51,33,8);
   --main-color-lighten: rgb(255,178,77);

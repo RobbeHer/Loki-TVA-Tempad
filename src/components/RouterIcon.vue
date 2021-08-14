@@ -55,4 +55,9 @@ export default {
   color: var(--main-color);
   text-decoration: none;
 }
+p:hover:hover,
+p:active:hover {
+  background-color: var(--main-color-lighten);
+  color: var(--main-bg-color);
+}
 </style>
