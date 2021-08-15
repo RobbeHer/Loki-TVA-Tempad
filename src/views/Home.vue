@@ -110,7 +110,7 @@ export default {
   width: fit-content;
 }
 #action-list .option-btn {
-  padding: 0 1vh !important;
+  padding: 2vh 1vh !important;
   font-size: 1.3em;
 }
 #TimeDoor p:hover,

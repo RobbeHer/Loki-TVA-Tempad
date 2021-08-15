@@ -1,14 +1,19 @@
 <template>
-  <Base/>
+  <div>
+    <Base/>
+    <Pwa/>
+  </div>
 </template>
 
 <script>
 import Base from "@/components/BaseContainer";
+import Pwa from "@/components/Pwa";
 
 export default {
   name: 'App',
   components: {
-    Base
+    Base,
+    Pwa
   }
 }
 </script>
