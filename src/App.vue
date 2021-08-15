@@ -1,6 +1,20 @@
 <template>
   <div>
-    <Base/>
+    <Base id="app"/>
+    <div id="orientation-warning">
+      <figure>
+        <img src="./assets/img/mrs-minutes.png" alt="">
+        <figcaption>Hi there!</figcaption>
+      </figure>
+      <br>
+      <p>This app only works in a landscape orientation.</p>
+      <br>
+      <p>Please turn your device.</p>
+      <br>
+      <br>
+      <br>
+      <p>Tip: Turn off 'Auto rotate' on your mobile device while in landscape orientation to prevent showing this message.</p>
+    </div>
     <Pwa/>
   </div>
 </template>
@@ -38,5 +52,31 @@ body {
   color: var(--main-color) !important;
   font-family: monospace !important;
   font-weight: bold !important;
+}
+#orientation-warning {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 64px;
+  width: 80%;
+  transform: translateX(-50%);
+}
+#orientation-warning figure {
+  text-align: center;
+}
+#orientation-warning img {
+  width: 50%;
+  height: auto;
+}
+#app {
+  display: block;
+}
+@media screen and (orientation: portrait) {
+  #app {
+    display: none;
+  }
+  #orientation-warning {
+    display: block;
+  }
 }
 </style>
