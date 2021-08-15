@@ -13,7 +13,7 @@ export default {
 <style scoped>
 #app-container-bg-raster {
   position: absolute;
-  inset: 4px 4px 1.3em;
+  inset: 4px 4px 1.5em;
   border: solid 2px var(--main-color-darken);
   background-image:
       radial-gradient(circle at 1px 1px, black 1px, transparent 0px),
