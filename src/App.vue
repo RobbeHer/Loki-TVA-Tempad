@@ -64,6 +64,9 @@ body {
 #orientation-warning figure {
   text-align: center;
 }
+#orientation-warning figcaption {
+  margin-top: 10px !important;
+}
 #orientation-warning img {
   width: 50%;
   height: auto;

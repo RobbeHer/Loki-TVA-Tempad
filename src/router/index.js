@@ -27,6 +27,11 @@ const routes = [
     path: '/timeloop',
     name: 'Timeloop',
     component: () => import(/* webpackChunkName: "timeloop" */ '../views/Timeloop.vue')
+  },
+  {
+    path: '*',
+    name: 'error-404',
+    component: () => import(/* webpackChunkName: "404" */ '../views/404.vue')
   }
 ]
 
