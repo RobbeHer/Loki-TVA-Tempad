@@ -36,5 +36,7 @@ export default {
 body {
   background-color: var(--main-bg-color) !important;
   color: var(--main-color) !important;
+  font-family: monospace !important;
+  font-weight: bold !important;
 }
 </style>

@@ -103,7 +103,6 @@ export default {
 #action-list #title,
 #action-list #sub-title,
 #action-list .option-btn {
-  font-weight: bold;
   font-size: 1.7em;
 }
 #action-list #buttons {
