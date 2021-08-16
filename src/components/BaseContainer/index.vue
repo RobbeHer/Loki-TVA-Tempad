@@ -1,12 +1,13 @@
 <template>
 <div id="base-container">
-  <AppContainer>
+  <AppContainer v-if="showAppContainer">
     <AppContainerBgRaster>
       <Navigation/>
       <router-view/><!-- Most routed content -->
     </AppContainerBgRaster>
     <Infobar/>
   </AppContainer>
+  <router-view v-else/>
 </div>
 </template>
 
@@ -18,11 +19,24 @@ import Infobar from "@/components/BaseContainer/Infobar";
 
 export default {
   name: 'index',
+  data() {
+    return {
+      showAppContainer: true,
+      dontShowOnPages: [
+        '/draw'
+      ]
+    }
+  },
   components: {
     AppContainer,
     AppContainerBgRaster,
     Navigation,
     Infobar
+  },
+  watch: {
+    $route(to) {
+      this.showAppContainer = !this.dontShowOnPages.includes(to.path);
+    }
   }
 }
 </script>

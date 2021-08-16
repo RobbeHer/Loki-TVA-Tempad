@@ -36,6 +36,12 @@ export default {
 * {
   margin: 0 !important;
   padding: 0 !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 :root {
   --main-bg-color: black;
@@ -44,6 +50,7 @@ export default {
   --main-color-darken-soft: rgba(255,165,40,0.7);
   --main-color-darken: rgb(102,66,16);
   --main-color-dark: rgb(51,33,8);
+  --main-color-dark-rgb: 51,33,8;
   --main-color-lighten: rgb(255,178,77);
   --main-color-light: rgb(255, 234, 210);
 }
