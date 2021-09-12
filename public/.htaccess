@@ -1,0 +1,14 @@
+RewriteEngine on
+
+# Redirect if not subdomain
+RewriteCond %{HTTP_HOST} !^tva.heremansrob.be$
+RewriteRule ^$ https://heremansrob.be [L,R=301]
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.html - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+</IfModule>
