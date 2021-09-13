@@ -34,6 +34,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "draw" */ '../views/Draw.vue')
   },
   {
+    path: '/locator',
+    name: 'Locator',
+    component: () => import(/* webpackChunkName: "locator" */ '../views/Locator.vue')
+  },
+  {
     path: '*',
     name: 'error-404',
     component: () => import(/* webpackChunkName: "404" */ '../views/404.vue')

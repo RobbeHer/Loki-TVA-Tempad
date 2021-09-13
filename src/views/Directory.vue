@@ -11,7 +11,7 @@
       <RouterIcon :link="'/personnel'" :icon="'personnel'" :title="'PERSONNEL'"></RouterIcon>
     </div>
     <div class="grid-item">
-      <RouterIcon :link="'/missions'" :icon="'missions'" :title="'MISSIONS'"></RouterIcon>
+      <RouterIcon :link="'/locator'" :icon="'missions'" :title="'MISSIONS'"></RouterIcon>
     </div>
     <div class="grid-item">
       <RouterIcon :link="'/battery'" :icon="'battery'" :title="'BATTERY'"></RouterIcon>
