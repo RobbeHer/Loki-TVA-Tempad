@@ -23,15 +23,15 @@
           <span class="underline">{{ canSelectOptions ? selectedProgram[0] : 'S' }}</span>{{ canSelectOptions ? selectedProgram.slice(1) : 'ELECT PROGRAM' }}
         </p>
         <div id="buttons">
-          <div @click="show($event, 'options')" class="option-btn dimmed">1.<span class="underline">O</span>PTIONS</div>
-          <div @click="show($event,'run-program')" class="option-btn dimmed">2.<span class="underline">R</span>UN PROGRAM</div>
-          <div  @click="unSelectedAllOptions" class="option-btn dimmed">3.<span class="underline">C</span>LEAR CACHE</div>
+          <div @click="show($event, 'options')" class="option-btn dimmed-1 btn-an-1">1.<span class="underline">O</span>PTIONS</div>
+          <div @click="show($event,'run-program')" class="option-btn dimmed-2 btn-an-2">2.<span class="underline">R</span>UN PROGRAM</div>
+          <div  @click="unSelectedAllOptions" class="option-btn dimmed-3 btn-an-3">3.<span class="underline">C</span>LEAR CACHE</div>
         </div>
       </div>
       <div id="building">
-        <p><span>////</span></p>
-        <p>BUILDING PORTAL</p>
-        <p>PLEASE WAIT</p>
+        <p><span class="an-1">///</span><span class="an-3">///</span></p>
+        <p class="an-2">BUILDING PORTAL</p>
+        <p class="an-4">PLEASE WAIT</p>
       </div>
     </div>
   </div>
@@ -56,10 +56,18 @@ export default {
   },
   methods: {
     selectedTimeDoor() {
-      this.forEachElementAddClass("#TimeDoor p", "marked");
-      this.forEachElementRemoveClass("#action-list .option-btn", "dimmed");
       this.selectedProgram = 'TIME DOOR';
       this.canSelectOptions = true;
+      this.forEachElementAddClass("#TimeDoor p", "marked");
+      setTimeout(() => {
+        this.forEachElementRemoveClass("#action-list .btn-an-1", "dimmed-1");
+        setTimeout(() => {
+          this.forEachElementRemoveClass("#action-list .btn-an-2", "dimmed-2");
+          setTimeout(() => {
+            this.forEachElementRemoveClass("#action-list .btn-an-3", "dimmed-3");
+          }, 200)
+        }, 200)
+      }, 200)
     },
     show(e, option) {
       if (!this.canSelectOptions) return;
@@ -70,7 +78,9 @@ export default {
     },
     unSelectedAllOptions() {
       this.forEachElementRemoveClass(".marked", "marked");
-      this.forEachElementAddClass("#action-list .option-btn", "dimmed");
+      this.forEachElementAddClass("#action-list .btn-an-1", "dimmed-1");
+      this.forEachElementAddClass("#action-list .btn-an-2", "dimmed-2");
+      this.forEachElementAddClass("#action-list .btn-an-3", "dimmed-3");
       this.canSelectOptions = false;
       console.log('unselect')
     },
@@ -84,14 +94,20 @@ export default {
     },
     animateTimeDoor() {
       this.forEachElementAddClass(".link", "fade-hide");
-      this.forEachElementAddClass("#action-list", "fade-hide");
+      this.forEachElementAddClass("#action-list", "fade-hide-2");
       this.forEachElementAddClass("#TimeDoor", "zoom");
       this.forEachElementAddClass("#building", "show");
+      for (let x = 1; x <= 4; x++) {
+        this.forEachElementAddClass(`#building .an-${x}`, `show-${x}`);
+      }
       setTimeout(() => {
         this.forEachElementRemoveClass(".link", "fade-hide");
-        this.forEachElementRemoveClass("#action-list", "fade-hide");
+        this.forEachElementRemoveClass("#action-list", "fade-hide-2");
         this.forEachElementRemoveClass("#TimeDoor", "zoom");
         this.forEachElementRemoveClass("#building", "show");
+        for (let x = 1; x <= 4; x++) {
+          this.forEachElementRemoveClass(`#building .an-${x}`, `show-${x}`);
+        }
         this.unSelectedAllOptions();
       }, 4000)
     }
@@ -100,21 +116,28 @@ export default {
 </script>
 
 <style scoped>
-.fade-hide {
-  animation: hide 1s linear forwards;
-}
+.fade-hide { animation: hide 0.5s linear forwards; }
+.fade-hide-2 { animation: hide 0.25s 0.25s linear forwards; }
 .hide {
   display: none;
 }
 @keyframes hide {
   100% {
     opacity: 0;
+    filter: blur(50px);
   }
 }
 .show {
   top: 50%;
   transform: translateY(-50%);
-  animation: show 0.5s 1s linear forwards;
+  animation: show 0s 0.5s linear forwards;
+}
+.show-1 { animation: show 0.25s 0.5s linear forwards; }
+.show-2 { animation: show 0.25s 0.75s linear forwards; }
+.show-3 { animation: show 0.25s 1s linear forwards; }
+.show-4 { animation: show 0.25s 1.25s linear forwards; }
+.an-1, .an-2, .an-3, .an-4 {
+  opacity: 0;
 }
 @keyframes show {
   0% {
@@ -125,7 +148,7 @@ export default {
   }
 }
 .zoom {
-  animation: zoom 1s 0.5s linear forwards;
+  animation: zoom 1s linear forwards;
 }
 @keyframes zoom {
   100% {
@@ -172,22 +195,20 @@ export default {
   font-size: 1.3em;
 }
 #TimeDoor p:hover,
-#TimeDoor p:active,
-#action-list .option-btn:hover,
-#action-list .option-btn:active {
+#action-list .option-btn:hover {
   cursor: pointer;
 }
 .grid-item /deep/ p:hover:not(.marked),
-.grid-item /deep/ p:active:not(.marked),
-#action-list .option-btn:hover:not(.marked),
-#action-list .option-btn:active:not(.marked) {
+#action-list .option-btn:hover:not(.marked) {
   background-color: var(--main-color-lighten);
   color: var(--main-bg-color);
 }
 #action-list #title span {
   font-size: 0.7em;
 }
-.dimmed {
+.dimmed-1,
+.dimmed-2,
+.dimmed-3 {
   color: var(--main-color-darken-soft);
 }
 .marked {
