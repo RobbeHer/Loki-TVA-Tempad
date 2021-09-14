@@ -61,7 +61,7 @@ img {
 
 .mark {
   padding: 0 4px !important;
-  background-color: var(--main-color-lighten);
+  background-color: var(--main-color);
   color: black;
 }
 
@@ -110,10 +110,10 @@ img {
     height: 0;
   }
   100% {
-    width: 500px;
-    height: 500px;
-    top: -250px;
-    left: -250px;
+    width: 750px;
+    height: 750px;
+    top: -375px;
+    left: -375px;
     opacity: 0;
   }
 }

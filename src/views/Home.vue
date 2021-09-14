@@ -6,13 +6,13 @@
         <img src="../assets/img/time-door.png" alt="">
         <p>TIME DOOR</p>
       </div>
-      <div class="grid-item">
+      <div class="grid-item link">
         <RouterIcon :link="'/miss-minutes'" :icon="'mrs-minutes'" :title="'MISS MINUTES'"></RouterIcon>
       </div>
-      <div class="grid-item">
+      <div class="grid-item link">
         <RouterIcon :link="'/settings'" :icon="'settings'" :title="'SETTINGS'"></RouterIcon>
       </div>
-      <div class="grid-item">
+      <div class="grid-item link">
         <RouterIcon :link="'/directory'" :icon="'directory'" :title="'DIRECTORY'"></RouterIcon>
       </div>
     </div>
@@ -27,6 +27,11 @@
           <div @click="show($event,'run-program')" class="option-btn dimmed">2.<span class="underline">R</span>UN PROGRAM</div>
           <div  @click="unSelectedAllOptions" class="option-btn dimmed">3.<span class="underline">C</span>LEAR CACHE</div>
         </div>
+      </div>
+      <div id="building">
+        <p><span>////</span></p>
+        <p>BUILDING PORTAL</p>
+        <p>PLEASE WAIT</p>
       </div>
     </div>
   </div>
@@ -46,7 +51,7 @@ export default {
   data() {
     return {
       canSelectOptions: false,
-      selectedProgram: ''
+      selectedProgram: '',
     }
   },
   methods: {
@@ -61,6 +66,7 @@ export default {
       this.forEachElementRemoveClass("#action-list .marked", "marked");
       e.target.classList.add('marked');
       console.log(option)
+      if (option === 'run-program') this.animateTimeDoor();
     },
     unSelectedAllOptions() {
       this.forEachElementRemoveClass(".marked", "marked");
@@ -76,11 +82,64 @@ export default {
       let elements = document.querySelectorAll(element);
       if (elements !== null) elements.forEach((el) => { el.classList.add(className); });
     },
+    animateTimeDoor() {
+      this.forEachElementAddClass(".link", "fade-hide");
+      this.forEachElementAddClass("#action-list", "fade-hide");
+      this.forEachElementAddClass("#TimeDoor", "zoom");
+      this.forEachElementAddClass("#building", "show");
+      setTimeout(() => {
+        this.forEachElementRemoveClass(".link", "fade-hide");
+        this.forEachElementRemoveClass("#action-list", "fade-hide");
+        this.forEachElementRemoveClass("#TimeDoor", "zoom");
+        this.forEachElementRemoveClass("#building", "show");
+        this.unSelectedAllOptions();
+      }, 4000)
+    }
   }
 }
 </script>
 
 <style scoped>
+.fade-hide {
+  animation: hide 1s linear forwards;
+}
+.hide {
+  display: none;
+}
+@keyframes hide {
+  100% {
+    opacity: 0;
+  }
+}
+.show {
+  top: 50%;
+  transform: translateY(-50%);
+  animation: show 0.5s 1s linear forwards;
+}
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.zoom {
+  animation: zoom 1s 0.5s linear forwards;
+}
+@keyframes zoom {
+  100% {
+    transform: scale(2) translate(25%, 25%);
+  }
+}
+#building {
+  position: absolute;
+  font-size: 1.7em;
+  opacity: 0;
+}
+#building span {
+  font-size: 0.7em;
+}
 .row {
   height: 100%;
 }
