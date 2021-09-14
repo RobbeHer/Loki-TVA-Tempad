@@ -7,7 +7,7 @@
         <p>TIME DOOR</p>
       </div>
       <div class="grid-item link">
-        <RouterIcon :link="'/miss-minutes'" :icon="'mrs-minutes'" :title="'MISS MINUTES'"></RouterIcon>
+        <RouterIcon :link="'/quiz'" :icon="'mrs-minutes'" :title="'MISS MINUTES'"></RouterIcon>
       </div>
       <div class="grid-item link">
         <RouterIcon :link="'/settings'" :icon="'settings'" :title="'SETTINGS'"></RouterIcon>
