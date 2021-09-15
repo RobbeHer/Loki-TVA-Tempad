@@ -80,7 +80,7 @@ export default {
             ]
           },
           {
-            question: 'What do these do?',
+            question: 'What is the function of a Reset charge?',
             correctAnswer: ['A', 'B'],
             possibleAnswers: [
               {id: 'A', text: 'Prune the effected radius of a branch\'s timeline, allowing time to heal all its wounds.'},
@@ -100,13 +100,25 @@ export default {
   },
   methods: {
     isWrong(answer) {
-      return this.review && (this.selectedQuestion === answer.id && (answer.id !== this.currentQuestion.correctAnswer || !this.currentQuestion.correctAnswer.includes(answer.id)));
+      if (!this.review) return false;
+      if (typeof this.currentQuestion.correctAnswer === "object") {
+        return this.selectedQuestion === answer.id && !this.currentQuestion.correctAnswer.includes(answer.id);
+      }
+      return this.selectedQuestion === answer.id && answer.id !== this.currentQuestion.correctAnswer;
     },
     isCorrect(answer) {
-      return this.review && (answer.id === this.currentQuestion.correctAnswer || this.currentQuestion.correctAnswer.includes(answer.id));
+      if (!this.review) return false;
+      if (typeof this.currentQuestion.correctAnswer === "object") {
+        return this.currentQuestion.correctAnswer.includes(answer.id);
+      }
+      return answer.id === this.currentQuestion.correctAnswer;
     },
     answered(id) {
-      if (id === this.currentQuestion.correctAnswer) this.score++;
+      if (typeof this.currentQuestion.correctAnswer === "object") {
+        if (this.currentQuestion.correctAnswer.includes(id)) this.score++;
+      } else {
+        if (id === this.currentQuestion.correctAnswer) this.score++;
+      }
       this.review = true;
       this.selectedQuestion = id;
     },
