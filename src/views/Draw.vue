@@ -1,12 +1,18 @@
 <template>
   <div id="draw">
+    <Navigation/>
     <canvas @mousedown="startPainting" @mouseup="finishedPainting" @mousemove="draw" id="canvas"></canvas>
   </div>
 </template>
 
 <script>
+import Navigation from "@/components/BaseContainer/Navigation";
+
 export default {
   name: "Draw",
+  components: {
+    Navigation
+  },
   data() {
     return {
       painting:false,
@@ -89,5 +95,8 @@ export default {
 #canvas {
   width: 100%;
   height: 100%;
+}
+/deep/ #navigation {
+  margin: 10px !important;
 }
 </style>

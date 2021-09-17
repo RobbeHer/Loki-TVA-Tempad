@@ -13,7 +13,7 @@ export default {
 <style scoped>
 #app-container {
   position: absolute;
-  inset: 20px;
+  inset: 5px;
   border: solid 4px var(--main-color);
 }
 </style>
