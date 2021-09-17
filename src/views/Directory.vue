@@ -5,7 +5,7 @@
       <RouterIcon :link="'/timeloop'" :icon="'timeloop'" :title="'TIMELOOP'"></RouterIcon>
     </div>
     <div class="grid-item">
-      <RouterIcon :link="'/timekeepers'" :icon="'timekeepers'" :title="'TIMEKEEPERS'"></RouterIcon>
+      <RouterIcon :link="'/time-keepers'" :icon="'timekeepers'" :title="'TIME KEEPERS'"></RouterIcon>
     </div>
     <div class="grid-item">
       <RouterIcon :link="'/personnel'" :icon="'personnel'" :title="'PERSONNEL'"></RouterIcon>

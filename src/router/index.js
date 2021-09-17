@@ -34,9 +34,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "draw" */ '../views/Draw.vue')
   },
   {
-    path: '/locator',
-    name: 'Locator',
-    component: () => import(/* webpackChunkName: "locator" */ '../views/Locator.vue')
+    path: '/missions',
+    name: 'Missions',
+    component: () => import(/* webpackChunkName: "missions" */ '../views/Missions.vue')
   },
   {
     path: '/quiz',
@@ -47,6 +47,11 @@ const routes = [
     path: '/personnel',
     name: 'Personnel',
     component: () => import(/* webpackChunkName: "personnel" */ '../views/Personnel.vue')
+  },
+  {
+    path: '/time-keepers',
+    name: 'Timekeepers',
+    component: () => import(/* webpackChunkName: "time-keepers" */ '../views/TimeKeepers.vue')
   },
   {
     path: '*',
