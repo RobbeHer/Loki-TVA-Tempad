@@ -179,6 +179,7 @@ export default {
   height: 25vh;
 }
 #action-list {
+  position: absolute;
   padding: 4vh 0 0 3vh !important;
   width: fit-content;
 }
