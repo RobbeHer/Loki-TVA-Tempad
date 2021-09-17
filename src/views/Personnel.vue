@@ -105,7 +105,7 @@ export default {
 <style scoped>
 .grid-container {
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 33% 33% 33%;
 }
 .grid-item {
   text-align: center;
