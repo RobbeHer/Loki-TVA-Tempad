@@ -23,7 +23,7 @@
         <button v-if="review" @click="next">next</button>
       </template>
       <template v-else>
-        <p>Score: {{ score }}</p>
+        <p>Score: {{ score }}/{{ questions.length }}</p>
       </template>
     </div>
   </ContentContainer>
@@ -50,13 +50,13 @@ export default {
           },
           {
             question: 'Thanos has two apples. He eats both but realizes he wants more. He goes back in time 20 minutes' +
-                'and eats the apples again. <br/> Does this mean the apples will not have existed in the timeline he left?',
+                ' and eats the apples again. <br/> Does this mean the apples will not have existed in the timeline he left?',
             correctAnswer: 'B',
             possibleAnswers: [
               {id: 'A', text: 'No, because time is constantly happening.'},
               {id: 'B', text: 'The question doesn\'t matter because a branch cannot change another time branch.'},
               {id: 'C', text: 'Thanos would\'ve been hungry prior because the Grandfather paradox already accounted' +
-                    'for the change in matter before its move.'},
+                    ' for the change in matter before its move.'},
             ]
           },
           {
@@ -66,7 +66,7 @@ export default {
             possibleAnswers: [
               {id: 'A', text: 'Nexus events destabilise the time flow. After all are these branches still changing and growing.'},
               {id: 'B', text: 'It would create a Grandfather paradox where sending the first squad would have been unnecessary' +
-                    'and the second one never occurring.'},
+                    ' and the second one never occurring.'},
             ]
           },
           {
