@@ -99,7 +99,7 @@ class Branch {
 }
 
 export default {
-  name: "Branches",
+  name: "TimeLoop",
   components: {
     ContentContainer,
     TextSlider

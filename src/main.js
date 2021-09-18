@@ -2,12 +2,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import wb from "./registerServiceWorker";
+import wb from "./registerServiceWorker"
+import { store } from './store/store'
 
-Vue.prototype.$workbox = wb;
+Vue.prototype.$workbox = wb
 Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

@@ -24,9 +24,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "branches" */ '../views/Branches.vue')
   },
   {
-    path: '/timeloop',
-    name: 'Timeloop',
-    component: () => import(/* webpackChunkName: "timeloop" */ '../views/Timeloop.vue')
+    path: '/time-loop',
+    name: 'TimeLoop',
+    component: () => import(/* webpackChunkName: "time-loop" */ '../views/TimeLoop.vue')
   },
   {
     path: '/draw',
@@ -52,6 +52,11 @@ const routes = [
     path: '/time-keepers',
     name: 'Timekeepers',
     component: () => import(/* webpackChunkName: "time-keepers" */ '../views/TimeKeepers.vue')
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: () => import(/* webpackChunkName: "settings" */ '../views/Settings.vue')
   },
   {
     path: '*',

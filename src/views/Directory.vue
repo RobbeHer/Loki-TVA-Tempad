@@ -3,7 +3,7 @@
   <div class="grid-container">
     <!-- 1 -->
     <div class="grid-item">
-      <RouterIcon :link="'/timeloop'" :icon="'timeloop'" :title="'TIMELOOP'"></RouterIcon>
+      <RouterIcon :link="'/time-loop'" :icon="'timeloop'" :title="'TIME LOOP'"></RouterIcon>
     </div>
     <!-- 6 -->
     <div class="grid-item">
