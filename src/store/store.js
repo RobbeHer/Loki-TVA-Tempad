@@ -10,7 +10,8 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        soundEnabled: true,
+        portalSoundEnabled: true,
+        branchingSoundEnabled: true,
         navigation: {
             nav1: '/',
             nav2: '/directory',
@@ -32,8 +33,12 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
-        soundEnabled(state, value) {
-            state.soundEnabled = value
+        portalSoundEnabled(state, value) {
+            state.portalSoundEnabled = value
+            localStorage.setItem('store', state);
+        },
+        branchingSoundEnabled(state, value) {
+            state.branchingSoundEnabled = value
             localStorage.setItem('store', state);
         },
         navOption(state, {option, value}) {

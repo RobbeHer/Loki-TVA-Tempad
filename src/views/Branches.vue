@@ -38,6 +38,7 @@
 <script>
 import ContentContainer from "@/components/ContentContainer";
 import TextSlider from "@/components/TextSlider";
+const beep1 = require("../assets/beep-1.wav");
 
 export default {
   name: "Branches",
@@ -56,25 +57,42 @@ export default {
       countdown: 60000,
       totalAmountOfPixels: 68,
       amountOfPixelsPlaced: 0,
-      maxGraphHeight: 0
+      maxGraphHeight: 0,
+      beepSound: null
     }
   },
   created() {
     this.maxGraphHeight = this.calculateGraphHeight(this.graphStyle, this.totalAmountOfPixels);
   },
   mounted() {
+    this.beepSound = new Audio(beep1);
     const timeOut =  this.countdown / this.totalAmountOfPixels;
 
     this.interval = window.setInterval(() => {
-      this.countdown -= timeOut;
-      this.addPixel();
+      if (!this.countdown <= 0) {
+        this.countdown -= timeOut;
+        this.addPixel();
+      }
 
       if(this.calculateUnitsLeft() <= 3) {
         document.getElementById("redline").classList.add('blinking-animation');
       }
 
-      if (this.countdown <= 0) {
-        clearTimeout(this.interval);
+      if (this.$store.state.branchingSoundEnabled) {
+        this.beepSound.play();
+        if (this.calculateUnitsLeft() <= 3) {
+          setTimeout(() => {
+            this.beepSound.play()
+          }, timeOut/2)
+        }
+        if (this.calculateUnitsLeft() <= 1) {
+          setTimeout(() => {
+            this.beepSound.play()
+            setTimeout(() => {
+              this.beepSound.play()
+            }, timeOut/3)
+          }, timeOut/3)
+        }
       }
     }, timeOut );
   },

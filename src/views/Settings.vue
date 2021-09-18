@@ -2,8 +2,11 @@
 <ContentContainer :black-bg="true" :border="true">
   <fieldset>
     <legend>Sound</legend>
-    <label for="checkbox">Enabled</label>
-    <input type="checkbox" id="checkbox" v-model="soundEnabled" @change="setSoundEnabled" :checked="$store.state.soundEnabled">
+    <label for="portal">Portal</label>
+    <input type="checkbox" id="portal" v-model="portalSoundEnabled" @change="setPortalSoundEnabled" :checked="$store.state.portalSoundEnabled">
+    <br>
+    <label for="branching">Branching</label>
+    <input type="checkbox" id="branching" v-model="branchingSoundEnabled" @change="setBranchingSoundEnabled" :checked="$store.state.branchingSoundEnabled">
   </fieldset>
   <fieldset>
     <legend>Navigation</legend>
@@ -41,15 +44,19 @@ export default {
   },
   data() {
     return {
-      soundEnabled: this.$store.state.soundEnabled,
+      portalSoundEnabled: this.$store.state.portalSoundEnabled,
+      branchingSoundEnabled: this.$store.state.branchingSoundEnabled,
     }
   },
   methods: {
     image(i) {
       return require(`../assets/img/nav-icon/${i}.png`)
     },
-    setSoundEnabled() {
-      this.$store.commit('soundEnabled', this.soundEnabled)
+    setPortalSoundEnabled() {
+      this.$store.commit('portalSoundEnabled', this.portalSoundEnabled)
+    },
+    setBranchingSoundEnabled() {
+      this.$store.commit('branchingSoundEnabled', this.branchingSoundEnabled)
     },
     setNavOption(i, event) {
       this.$store.commit('navOption', {option: `nav${i}`, value: event.target.value})

@@ -41,6 +41,7 @@
 <script>
 import ContentContainer from "@/components/ContentContainer";
 import RouterIcon from "@/components/RouterIcon";
+const portalSound = require("../assets/time-door.wav");
 
 export default {
   name: 'Home',
@@ -52,6 +53,7 @@ export default {
     return {
       canSelectOptions: false,
       selectedProgram: '',
+      portalSound: new Audio(portalSound)
     }
   },
   methods: {
@@ -73,7 +75,6 @@ export default {
       if (!this.canSelectOptions) return;
       this.forEachElementRemoveClass("#action-list .marked", "marked");
       e.target.classList.add('marked');
-      console.log(option)
       if (option === 'run-program') this.animateTimeDoor();
     },
     unSelectedAllOptions() {
@@ -82,7 +83,6 @@ export default {
       this.forEachElementAddClass("#action-list .btn-an-2", "dimmed-2");
       this.forEachElementAddClass("#action-list .btn-an-3", "dimmed-3");
       this.canSelectOptions = false;
-      console.log('unselect')
     },
     forEachElementRemoveClass(element, className) {
       let elements = document.querySelectorAll(element);
@@ -93,6 +93,7 @@ export default {
       if (elements !== null) elements.forEach((el) => { el.classList.add(className); });
     },
     animateTimeDoor() {
+      if (this.$store.state.portalSoundEnabled) this.portalSound.play();
       this.forEachElementAddClass(".link", "fade-hide");
       this.forEachElementAddClass("#action-list", "fade-hide-2");
       this.forEachElementAddClass("#TimeDoor", "zoom");

@@ -43,6 +43,7 @@
 <script>
 import ContentContainer from "@/components/ContentContainer";
 import TextSlider from "@/components/TextSlider";
+const beep1 = require("../assets/beep-1.wav");
 
 class Branch {
   completed = false;
@@ -99,7 +100,7 @@ class Branch {
 }
 
 export default {
-  name: "TimeLoop",
+  name: "Branches",
   components: {
     ContentContainer,
     TextSlider
@@ -107,7 +108,7 @@ export default {
   data() {
     return {
       interval: null,
-      timeOut: 500,
+      timeOut: 700,
       timeElapsed: 0,
       totalAmountOfGraphs: 50,
       amountOfGraphsMade: 0,
@@ -120,9 +121,12 @@ export default {
         "TOKYO, JAPAN (03.01.1984)", "HALA (01.03.0051)", "KINGSPORT, USA (08.02.1999)", "XANDAR (09.24.1001)",
         "BEIJING, CHINA (11.23.2005)", "MADRID, SPAIN (07.18.1903)"],
       redlineText: "REDLINE IMMINENT",
+      beepSound: null
     }
   },
   mounted() {
+    this.beepSound = new Audio(beep1);
+
     this.interval = window.setInterval(() => {
       if ( this.amountOfGraphsMade < this.totalAmountOfGraphs && this.timeElapsed%1000 === 0) {
         if (Math.floor(Math.random() * 4) === 3) {
@@ -131,8 +135,14 @@ export default {
           if (this.amountOfGraphsMade === 1) this.firstBranch = this.branches[0];
         }
       }
-      if (this.firstBranch !== null && this.firstBranch.getBranchProgress() >= 0.35) this.setBlinkingAnimation('blinking-animation-1', 0.35);
-      if (this.firstBranch !== null && this.firstBranch.getBranchProgress() >= 0.7) this.setBlinkingAnimation('blinking-animation-2', 0.7);
+      if (this.firstBranch !== null && this.firstBranch.getBranchProgress() >= 0.35) {
+        this.setBlinkingAnimation('blinking-animation-1', 0.35);
+        if (this.$store.state.branchingSoundEnabled) this.beepSound.play();
+      }
+      if (this.firstBranch !== null && this.firstBranch.getBranchProgress() >= 0.7) {
+        this.setBlinkingAnimation('blinking-animation-2', 0.7);
+        if (this.$store.state.branchingSoundEnabled) setTimeout(() => { this.beepSound.play() }, this.timeOut/2)
+      }
       this.branches.forEach((branch, index) => {
         const pop = branch.update();
         if (pop) {
