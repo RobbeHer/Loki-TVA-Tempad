@@ -59,6 +59,8 @@ body {
   color: var(--main-color) !important;
   font-family: monospace !important;
   font-weight: bold !important;
+  font-size: 1.5vw !important;
+  
 }
 #orientation-warning {
   display: none;
@@ -67,6 +69,7 @@ body {
   top: 64px;
   width: 80%;
   transform: translateX(-50%);
+  font-size: 1rem;
 }
 #orientation-warning figure {
   text-align: center;

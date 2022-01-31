@@ -66,6 +66,9 @@ export default {
 </script>
 
 <style scoped>
+legend {
+  font-size: 2vw;
+}
 .nav-icon {
   width: 4.5vh;
   height: auto;

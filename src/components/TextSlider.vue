@@ -1,14 +1,16 @@
 <template>
-  <Marquee direction="left">
-    <Slide style="margin-left: 30vh !important;" v-for="i in repeat" :key="i">
-      <span v-if="Array.isArray(text)">
-        <span v-for="(t, i) in text" :key="i" :style="{ color: color }">
-          <span v-if="i !== 0" :style="{ color: '#F00' }"> | </span>{{ t }}
+  <div class="text-slider">
+    <Marquee direction="left">
+      <Slide style="margin-left: 30vh !important;" v-for="i in repeat" :key="i">
+        <span v-if="Array.isArray(text)">
+          <span v-for="(t, i) in text" :key="i" :style="{ color: color }">
+            <span v-if="i !== 0" :style="{ color: '#F00' }"> | </span>{{ t }}
+          </span>
         </span>
-      </span>
-      <span v-else :style="{ color: color }">{{ text }}</span>
-    </Slide>
-  </Marquee>
+        <span v-else :style="{ color: color }">{{ text }}</span>
+      </Slide>
+    </Marquee>
+  </div>
 </template>
 
 <script>

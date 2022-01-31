@@ -203,4 +203,7 @@ export default {
   right: 20vh;
   bottom: 0;
 }
+/deep/ .text-slider {
+  font-size: 2vw;
+}
 </style>

@@ -190,6 +190,7 @@ export default {
   height: 3em;
   top: 0;
   overflow: hidden;
+  font-size: 2vw;
 }
 #bottom-bar-part {
   height: 2em;
