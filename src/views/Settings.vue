@@ -9,6 +9,11 @@
     <input type="checkbox" id="branching" v-model="branchingSoundEnabled" @change="setBranchingSoundEnabled" :checked="$store.state.branchingSoundEnabled">
   </fieldset>
   <fieldset>
+    <legend>Animation</legend>
+    <label for="time-loop">Time loop</label>
+    <input type="checkbox" id="time-loop" v-model="timeLoopAnimationEnabled" @change="setTimeLoopAnimationEnabled" :checked="$store.state.timeLoopAnimationEnabled">
+  </fieldset>
+  <fieldset>
     <legend>Navigation</legend>
     <div v-for="i in 5" :key="i">
       <template v-if="i === 1">
@@ -46,6 +51,7 @@ export default {
     return {
       portalSoundEnabled: this.$store.state.portalSoundEnabled,
       branchingSoundEnabled: this.$store.state.branchingSoundEnabled,
+      timeLoopAnimationEnabled: this.$store.state.timeLoopAnimationEnabled,
     }
   },
   methods: {
@@ -57,6 +63,9 @@ export default {
     },
     setBranchingSoundEnabled() {
       this.$store.commit('branchingSoundEnabled', this.branchingSoundEnabled)
+    },
+    setTimeLoopAnimationEnabled() {
+      this.$store.commit('timeLoopAnimationEnabled', this.timeLoopAnimationEnabled)
     },
     setNavOption(i, event) {
       this.$store.commit('navOption', {option: `nav${i}`, value: event.target.value})
