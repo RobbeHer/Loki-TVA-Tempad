@@ -87,7 +87,7 @@ export default {
     return {
       portalSoundEnabled: this.$store.state.portalSoundEnabled,
       branchingSoundEnabled: this.$store.state.branchingSoundEnabled,
-      timeLoopAnimationEnabled: this.$store.state.timeLoopAnimationEnabled,
+      timeLoopAnimationEnabled: this.$store.state.timeLoopAnimation.enabled,
     };
   },
   methods: {

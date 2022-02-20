@@ -110,7 +110,7 @@ class StandardBranch extends Branch {
   constructor(timeElapsed) {
     super();
     this.Xpos = `${Math.floor(Math.random() * 13) * 5 + 10}%`;
-    this.animationDelay = timeElapsed + Math.floor(Math.random() * 30) * 1000 + 5000;
+    this.animationDelay = timeElapsed + Math.floor(Math.random() * 30) * 1000;
     let process = Math.random()
     this.relapseGrowth = process <= 0.72 ? process : 0.72;
   }
@@ -197,7 +197,7 @@ export default {
     };
   },
   mounted() {
-    if (!this.$store.state.timeLoopAnimationEnabled) return;
+    if (!this.$store.state.timeLoopAnimation.enabled) return;
 
     this.beepSound = new Audio(beep1);
 
