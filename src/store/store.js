@@ -12,7 +12,11 @@ export const store = new Vuex.Store({
     state: {
         portalSoundEnabled: true,
         branchingSoundEnabled: true,
-        timeLoopAnimationEnabled: true,
+        timeLoopAnimation: {
+            enabled: true,
+            type: "standard",
+            options: ['standard', 'bombed']
+        },
         navigation: {
             nav1: '/',
             nav2: '/directory',
@@ -43,7 +47,11 @@ export const store = new Vuex.Store({
             localStorage.setItem('store', state);
         },
         timeLoopAnimationEnabled(state, value) {
-            state.timeLoopAnimationEnabled = value
+            state.timeLoopAnimation.enabled = value
+            localStorage.setItem('store', state);
+        },
+        timeLoopAnimationType(state, value) {
+            state.timeLoopAnimation.type = value
             localStorage.setItem('store', state);
         },
         navOption(state, {option, value}) {
